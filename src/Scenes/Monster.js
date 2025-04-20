@@ -4,9 +4,14 @@ class Monster extends Phaser.Scene {
         this.my = {sprite: {}};  // Create an object to hold sprite bindings
 
         //Create constants for the monster location
-        this.bodyX = 200;
-        this.bodyY = 200;
-        
+        this.bodyX = 400;
+        this.bodyY = 300;
+
+        // Key bindings
+        this.aKey = null;
+        this.dKey = null;
+        this.sKey = null;
+        this.fKey = null;
     }
 
     // Use preload to load art and sound assets before the scene starts running.
@@ -63,15 +68,41 @@ class Monster extends Phaser.Scene {
         // Set status of monster parts
         my.sprite.leftArm.flipX = true;
         my.sprite.leftLeg.flipX = true;
+        my.sprite.fangs.flipY = true;
         my.sprite.fangs.visible = false; 
 
-        
+        // Set rotations
+
+        // Set key bindings
+        this.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
+        this.dKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.D);
+        this.sKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.S);
+        this.fKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.F);
+
+        // Set up input events
+        this.input.keyboard.on('keydown', (event) => {
+            if (event.key === 's') {
+                my.sprite.smile.visible = true;
+                my.sprite.fangs.visible = false;
+            } else if (event.key === 'f') {
+                my.sprite.smile.visible = false;
+                my.sprite.fangs.visible = true;
+            }
+        });
     }
 
     update() {
         let my = this.my;    // create an alias to this.my for readability
 
-       
+       // Polling input: Move left
+        if (this.aKey.isDown) {
+            this.monster.x -= 2;
+        }
+
+        // Polling input: Move right
+        if (this.dKey.isDown) {
+            this.monster.x += 2;
+        }
     }
 
 }
