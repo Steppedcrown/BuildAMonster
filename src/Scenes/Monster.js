@@ -5,7 +5,7 @@ class Monster extends Phaser.Scene {
 
         //Create constants for the monster location
         this.bodyX = 400;
-        this.bodyY = 300;
+        this.bodyY = 250;
 
         // Key bindings
         this.aKey = null;
@@ -39,18 +39,18 @@ class Monster extends Phaser.Scene {
         //my.sprite.body = this.add.sprite(this.bodyX, this.bodyY, "monsterParts", "body_greenD.png");
 
         // All sprite positions now relative to (0, 0) in the container
-        my.sprite.leftArm = this.add.sprite(-100, 0, "monsterParts", "arm_blueA.png");
-        my.sprite.rightArm = this.add.sprite(100, 0, "monsterParts", "arm_blueB.png");
+        my.sprite.leftArm = this.add.sprite(-100, 50, "monsterParts", "arm_blueA.png");
+        my.sprite.rightArm = this.add.sprite(80, 50, "monsterParts", "arm_blueB.png");
 
-        my.sprite.leftLeg = this.add.sprite(-50, 100, "monsterParts", "leg_blueA.png");
-        my.sprite.rightLeg = this.add.sprite(50, 100, "monsterParts", "leg_blueB.png");
+        my.sprite.leftLeg = this.add.sprite(-40, 100, "monsterParts", "leg_blueA.png");
+        my.sprite.rightLeg = this.add.sprite(40, 100, "monsterParts", "leg_blueB.png");
 
-        my.sprite.eye = this.add.sprite(-50, -100, "monsterParts", "eye_blue.png");
-        my.sprite.smile = this.add.sprite(0, -50, "monsterParts", "mouthE.png");
-        my.sprite.fangs = this.add.sprite(0, -50, "monsterParts", "mouth_closed_fangs.png");
+        my.sprite.smile = this.add.sprite(-10, 40, "monsterParts", "mouthE.png");
+        my.sprite.fangs = this.add.sprite(-10, 40, "monsterParts", "mouth_closed_fangs.png");
 
-        my.sprite.antenna = this.add.sprite(0, -150, "monsterParts", "detail_blue_antenna_large.png");
-        my.sprite.ear = this.add.sprite(50, -100, "monsterParts", "detail_blue_ear_round.png");
+        my.sprite.eye = this.add.sprite(-50, -15, "monsterParts", "eye_blue.png");
+        my.sprite.ear = this.add.sprite(40, -10, "monsterParts", "detail_blue_ear_round.png");
+        my.sprite.antenna = this.add.sprite(0, -5, "monsterParts", "detail_blue_antenna_large.png");
 
         // Create container for the monster parts
         this.monster = this.add.container(this.bodyX, this.bodyY, [
@@ -72,6 +72,11 @@ class Monster extends Phaser.Scene {
         my.sprite.fangs.visible = false; 
 
         // Set rotations
+        my.sprite.leftArm.angle = 60;
+        my.sprite.rightArm.angle = -60;
+        my.sprite.leftLeg.angle = 20;
+        my.sprite.rightLeg.angle = -20;
+        my.sprite.antenna.angle = -15;
 
         // Set key bindings
         this.aKey = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.A);
